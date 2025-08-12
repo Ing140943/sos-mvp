@@ -1,12 +1,13 @@
-import React from 'react';
-import { MapPin, Trash2 } from 'lucide-react'; // ใช้ไอคอนถังขยะ
+import React from "react";
+import { MapPin, Trash2 } from "lucide-react"; // ใช้ไอคอนถังขยะ
+import "../styles/RecentReport.css";
 
 const RecentReports = ({ reports, onDelete }) => {
   return (
     <div className="mt-8 emergency-card">
       <h2 className="card-title">รายงานล่าสุด</h2>
       <div className="space-y-4">
-        {reports.map(report => (
+        {reports.map((report) => (
           <div key={report.id} className="report-item">
             <div className="flex justify-between items-start mb-2">
               <div>
@@ -16,12 +17,16 @@ const RecentReports = ({ reports, onDelete }) => {
                   {report.location}
                 </p>
               </div>
-              <div className="flex items-center space-x-2">
-                <span className={`status-badge ${
-                  report.status === 'รอการช่วยเหลือ' ? 'status-pending' :
-                  report.status === 'กำลังดำเนินการ' ? 'status-processing' :
-                  'status-resolved'
-                }`}>
+              <div className="status-delete-container">
+                <span
+                  className={`status-badge ${
+                    report.status === "รอการช่วยเหลือ"
+                      ? "status-pending"
+                      : report.status === "กำลังดำเนินการ"
+                      ? "status-processing"
+                      : "status-resolved"
+                  }`}
+                >
                   {report.status}
                 </span>
                 <button
@@ -35,7 +40,7 @@ const RecentReports = ({ reports, onDelete }) => {
               </div>
             </div>
             <p className="report-time">
-              รายงานเมื่อ: {new Date(report.timestamp).toLocaleString('th-TH')}
+              รายงานเมื่อ: {new Date(report.timestamp).toLocaleString("th-TH")}
             </p>
             {report.description && (
               <p className="report-description">{report.description}</p>
